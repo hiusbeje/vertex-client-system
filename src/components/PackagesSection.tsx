@@ -1,5 +1,5 @@
 
-import { Check, Star } from 'lucide-react';
+import { Check, Star, Zap, TrendingUp, Crown } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,50 +7,63 @@ import { Badge } from '@/components/ui/badge';
 const PackagesSection = () => {
   const packages = [
     {
-      name: 'Starter MVP',
-      description: 'مثالي للمشاريع الناشئة والشركات الصغيرة',
-      price: '497',
+      name: 'V Start',
+      subtitle: 'LaunchPad',
+      description: 'أطلق مشروعك الذكي الآن',
+      price: '399 - 699',
+      pricing: '/ شهريًا',
+      targetAudience: 'للأفراد والمشاريع الناشئة',
       popular: false,
+      icon: Zap,
       features: [
-        'موقع من صفحة واحدة احترافي',
-        'تصميم متجاوب لجميع الأجهزة', 
-        'نموذج طلب خدمة بسيط',
-        'تحسين محركات البحث الأساسي',
-        'دعم تقني لمدة 15 يوم',
-        'رابط حجز مواعيد مدمج'
+        'موقع ذكي متجاوب',
+        'بوت واتساب أساسي',
+        'خطة تسويق أولية',
+        'CRM بسيط لإدارة العملاء',
+        'دعم تقني لمدة 30 يوم',
+        'استشارة شهرية مجانية'
       ],
       deliveryTime: '3-5 أيام'
     },
     {
-      name: 'Business Pro',
-      description: 'الحل الأمثل للشركات المتوسطة',
-      price: '997',
+      name: 'V Growth',
+      subtitle: 'GrowthX',
+      description: 'نموك يبدأ من هنا',
+      price: '999 - 1,499',
+      pricing: '/ شهريًا',
+      targetAudience: 'للشركات في بدايات التوسع',
       popular: true,
+      icon: TrendingUp,
       features: [
-        'موقع متعدد الصفحات (حتى 5 صفحات)',
-        'نظام CRM بسيط لإدارة العملاء',
-        'بوت واتساب للرد التلقائي',
-        'نظام حجز مواعيد متقدم',
-        'تحليلات زوار الموقع',
-        'دعم تقني لمدة 30 يوم',
-        'تدريب على استخدام النظام'
+        'كل مميزات V Start',
+        'نظام CRM متقدم',
+        'منصة SaaS مخصصة',
+        'حملات تسويق مؤتمتة',
+        'بوتات ذكية متعددة',
+        'تحليلات متقدمة',
+        'دعم تقني مستمر',
+        'استشارات أسبوعية'
       ],
       deliveryTime: '5-7 أيام'
     },
     {
-      name: 'Enterprise Elite',
-      description: 'حل شامل للشركات الكبيرة والمؤسسات',
-      price: '1997',
+      name: 'V Scale',
+      subtitle: 'VertexAI',
+      description: 'الذكاء الكامل في خدمتك',
+      price: '2,999 - 4,999',
+      pricing: '/ شهريًا',
+      targetAudience: 'للشركات المتوسطة والكبيرة',
       popular: false,
+      icon: Crown,
       features: [
-        'موقع أو متجر إلكتروني كامل',
-        'نظام CRM متقدم مع تقارير',
-        'بوت واتساب ذكي بـ AI',
-        'تطبيق جوال للعملاء',
-        'نظام إدارة المحتوى',
-        'تكامل مع وسائل الدفع',
-        'دعم تقني لمدة 60 يوم',
-        'استشارات تسويقية'
+        'كل مميزات V Growth',
+        'أتمتة شاملة 80%+',
+        'أنظمة ذكاء اصطناعي',
+        'منصات متعددة',
+        'تكامل مع جميع الأدوات',
+        'فريق مخصص لمشروعك',
+        'استشارات يومية',
+        'ضمان النتائج'
       ],
       deliveryTime: '7-14 يوم'
     }
@@ -63,15 +76,15 @@ const PackagesSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="text-white">باقات</span>
-            <span className="vertex-gradient-text"> مميزة</span>
+            <span className="text-white">باقاتنا</span>
+            <span className="vertex-gradient-text"> الذكية</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            اختر الباقة التي تناسب احتياجات مشروعك وابدأ رحلتك نحو النجاح الرقمي
+            اختر الباقة التي تناسب نموك - من المشاريع الناشئة إلى الشركات الكبيرة
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {packages.map((pkg, index) => (
             <Card 
               key={index} 
@@ -89,20 +102,35 @@ const PackagesSection = () => {
               )}
 
               <CardHeader className={pkg.popular ? 'pt-12' : ''}>
-                <CardTitle className="text-2xl font-bold text-white">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 bg-vertex-gold-gradient rounded-lg flex items-center justify-center">
+                    <pkg.icon className="w-8 h-8 text-vertex-black" />
+                  </div>
+                </div>
+                
+                <CardTitle className="text-2xl font-bold text-white text-center">
                   {pkg.name}
                 </CardTitle>
-                <CardDescription className="text-gray-300">
-                  {pkg.description}
-                </CardDescription>
-                <div className="pt-4">
-                  <div className="flex items-baseline">
-                    <span className="text-4xl font-bold vertex-gradient-text">
+                <div className="text-center">
+                  <div className="text-lg font-semibold vertex-gradient-text">
+                    {pkg.subtitle}
+                  </div>
+                  <CardDescription className="text-gray-300 mt-2">
+                    {pkg.description}
+                  </CardDescription>
+                </div>
+                
+                <div className="pt-4 text-center">
+                  <div className="flex items-baseline justify-center">
+                    <span className="text-3xl font-bold vertex-gradient-text">
                       ${pkg.price}
                     </span>
-                    <span className="text-gray-400 mr-2">/ مشروع</span>
+                    <span className="text-gray-400 mr-2">{pkg.pricing}</span>
                   </div>
                   <div className="text-sm text-vertex-gold mt-1">
+                    {pkg.targetAudience}
+                  </div>
+                  <div className="text-sm text-gray-400 mt-1">
                     التسليم: {pkg.deliveryTime}
                   </div>
                 </div>
@@ -129,7 +157,7 @@ const PackagesSection = () => {
                 </Button>
 
                 <div className="text-center text-sm text-gray-400 mt-4">
-                  <span>استشارة مجانية قبل البدء</span>
+                  <span>✅ ضمان استرداد خلال 14 يوم</span>
                 </div>
               </CardContent>
             </Card>
@@ -138,20 +166,37 @@ const PackagesSection = () => {
 
         {/* Custom Package CTA */}
         <div className="text-center mt-16">
-          <div className="vertex-card p-8 max-w-2xl mx-auto border-vertex-gold/40">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              تحتاج حلول مخصصة؟
-            </h3>
+          <div className="vertex-card p-8 max-w-3xl mx-auto border-vertex-gold/40">
+            <div className="flex items-center justify-center mb-4">
+              <Crown className="w-8 h-8 text-vertex-gold ml-2" />
+              <h3 className="text-2xl font-bold text-white">
+                Dominance - سيطر على السوق باحتراف
+              </h3>
+            </div>
             <p className="text-gray-300 mb-6">
-              نقوم بتصميم باقات مخصصة حسب احتياجاتك الخاصة مع ضمان أفضل النتائج
+              خطة مخصصة للشركات والمشاريع التي تبحث عن قيادة السوق. 
+              نظام شامل مع فريق مخصص وأتمتة كاملة بأحدث تقنيات الذكاء الاصطناعي.
             </p>
+            <div className="text-center mb-6">
+              <span className="text-3xl font-bold vertex-gradient-text">$4,500+</span>
+              <span className="text-gray-400 mr-2">/ خطة مخصصة</span>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="vertex-button">
-                اطلب باقة مخصصة
+                احجز استشارة مجانية
               </Button>
               <Button variant="outline" className="text-vertex-gold border-vertex-gold hover:bg-vertex-gold hover:text-vertex-black">
-                تحدث مع مستشار
+                تحدث مع خبير
               </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Guarantee Section */}
+        <div className="text-center mt-12">
+          <div className="inline-flex items-center space-x-4 rtl:space-x-reverse bg-vertex-gold/10 border border-vertex-gold/30 rounded-lg px-6 py-4">
+            <div className="text-vertex-gold font-semibold">
+              ✨ ضمان الثقة: لا نتائج؟ لا تدفع | استشارة مجانية أولية بدون التزام
             </div>
           </div>
         </div>

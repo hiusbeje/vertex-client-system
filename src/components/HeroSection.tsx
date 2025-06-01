@@ -15,48 +15,54 @@ const HeroSection = () => {
           {/* Main Headline */}
           <div className="space-y-6 animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              <span className="text-white">نحن نبني لك</span>
+              <span className="text-white">نحو وكالة مؤتمتة،</span>
               <br />
-              <span className="vertex-gradient-text">نظامًا يجلب العملاء</span>
+              <span className="vertex-gradient-text">مبيعات مستمرة،</span>
               <br />
-              <span className="text-white">بدلاً منك</span>
+              <span className="text-white">ونمو بلا توقف</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed">
-              وكالة Vertex Solutions المتخصصة في بناء الأنظمة الرقمية المتكاملة. 
-              من المواقع إلى الـ CRM وبوتات الواتساب - كل ما تحتاجه لتنمية أعمالك.
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl leading-relaxed">
+              وكالة رقمية مؤتمتة بنسبة 80% تقود مشروعك للنمو الذكي باستخدام الذكاء الاصطناعي والتحول الرقمي.
+              تحوّل رقمي متكامل. ذكاء اصطناعي في كل خطوة. نتائج حقيقية.
             </p>
+
+            <div className="bg-vertex-gold/10 border border-vertex-gold/30 rounded-lg p-4 max-w-2xl">
+              <p className="text-vertex-gold font-semibold text-lg">
+                🎯 ابدأ في 72 ساعة. ارفع أرباحك، وخفّض نفقاتك، وسوّق على مدار الساعة.
+              </p>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-8">
               <Button className="vertex-button text-lg px-8 py-4 animate-glow">
-                احجز استشارة مجانية
+                🟢 ابدأ الآن
               </Button>
               <Button 
                 variant="outline" 
                 className="text-white border-vertex-gold hover:bg-vertex-gold hover:text-vertex-black text-lg px-8 py-4 transition-all duration-300"
               >
-                استكشف خدماتنا
+                📞 احجز استشارة مجانية
               </Button>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12">
               <div className="text-center">
-                <div className="text-3xl font-bold vertex-gradient-text">150+</div>
-                <div className="text-gray-400 mt-1">مشروع مكتمل</div>
+                <div className="text-3xl font-bold vertex-gradient-text">80%</div>
+                <div className="text-gray-400 mt-1">نسبة الأتمتة</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold vertex-gradient-text">98%</div>
-                <div className="text-gray-400 mt-1">رضا العملاء</div>
+                <div className="text-3xl font-bold vertex-gradient-text">72</div>
+                <div className="text-gray-400 mt-1">ساعة للبدء</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold vertex-gradient-text">24/7</div>
-                <div className="text-gray-400 mt-1">دعم تقني</div>
+                <div className="text-gray-400 mt-1">أنظمة ذكية</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold vertex-gradient-text">7</div>
-                <div className="text-gray-400 mt-1">أيام متوسط التسليم</div>
+                <div className="text-3xl font-bold vertex-gradient-text">100+</div>
+                <div className="text-gray-400 mt-1">عميل راضي</div>
               </div>
             </div>
           </div>

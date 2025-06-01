@@ -1,6 +1,7 @@
 
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
 import PackagesSection from '@/components/PackagesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -12,6 +13,7 @@ const Index = () => {
     <div className="min-h-screen bg-vertex-black text-white" dir="rtl">
       <Header />
       <HeroSection />
+      <AboutSection />
       <ServicesSection />
       <PackagesSection />
       <TestimonialsSection />
