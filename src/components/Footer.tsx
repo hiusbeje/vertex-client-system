@@ -1,24 +1,59 @@
 
 import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import ContactModal from './ContactModal';
 
 const Footer = () => {
   const services = [
-    'مواقع إلكترونية',
-    'متاجر إلكترونية', 
-    'بوتات واتساب',
-    'أنظمة CRM',
-    'تطبيقات الجوال',
-    'دعم تقني'
+    { name: 'مواقع إلكترونية', href: '/services' },
+    { name: 'متاجر إلكترونية', href: '/services' }, 
+    { name: 'بوتات واتساب', href: '/services' },
+    { name: 'أنظمة CRM', href: '/services' },
+    { name: 'تطبيقات الجوال', href: '/services' },
+    { name: 'دعم تقني', href: '/contact' }
   ];
 
   const quickLinks = [
-    'من نحن',
-    'خدماتنا',
-    'الباقات',
-    'أعمالنا',
-    'المدونة',
-    'اتصل بنا'
+    { name: 'من نحن', href: '/#about' },
+    { name: 'خدماتنا', href: '/services' },
+    { name: 'الباقات', href: '/#packages' },
+    { name: 'أعمالنا', href: '/#testimonials' },
+    { name: 'المدونة', href: '#' },
+    { name: 'اتصل بنا', href: '/contact' }
   ];
+
+  const handleWhatsApp = () => {
+    const message = "مرحبا، أريد الاستفسار عن خدمات Vertex Solutions";
+    const whatsappUrl = `https://wa.me/966501234567?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleEmailContact = () => {
+    window.location.href = 'mailto:info@vertex-solutions.com';
+  };
+
+  const handlePhoneContact = () => {
+    window.location.href = 'tel:+966501234567';
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    if (window.location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleQuickLinkClick = (href: string) => {
+    if (href.startsWith('/#')) {
+      const sectionId = href.substring(2);
+      scrollToSection(sectionId);
+    }
+  };
 
   return (
     <footer className="bg-vertex-black border-t border-vertex-gold/20 relative overflow-hidden">
@@ -28,27 +63,36 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-4 rtl:space-x-reverse">
+            <Link to="/" className="flex items-center space-x-4 rtl:space-x-reverse">
               <div className="w-12 h-12 bg-vertex-gold-gradient rounded-lg flex items-center justify-center">
                 <span className="text-vertex-black font-bold text-xl">V</span>
               </div>
               <div className="text-xl font-bold vertex-gradient-text">
                 Vertex Solutions
               </div>
-            </div>
+            </Link>
             <p className="text-gray-300 leading-relaxed">
               وكالة رقمية متخصصة في بناء الحلول التقنية المتكاملة للشركات والمشاريع الناشئة.
             </p>
             <div className="flex space-x-4 rtl:space-x-reverse">
-              <div className="w-10 h-10 bg-vertex-gold/20 rounded-lg flex items-center justify-center hover:bg-vertex-gold hover:text-vertex-black transition-all duration-300 cursor-pointer">
+              <button 
+                onClick={handleWhatsApp}
+                className="w-10 h-10 bg-vertex-gold/20 rounded-lg flex items-center justify-center hover:bg-vertex-gold hover:text-vertex-black transition-all duration-300 cursor-pointer"
+              >
                 <MessageCircle className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 bg-vertex-gold/20 rounded-lg flex items-center justify-center hover:bg-vertex-gold hover:text-vertex-black transition-all duration-300 cursor-pointer">
+              </button>
+              <button 
+                onClick={handleEmailContact}
+                className="w-10 h-10 bg-vertex-gold/20 rounded-lg flex items-center justify-center hover:bg-vertex-gold hover:text-vertex-black transition-all duration-300 cursor-pointer"
+              >
                 <Mail className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 bg-vertex-gold/20 rounded-lg flex items-center justify-center hover:bg-vertex-gold hover:text-vertex-black transition-all duration-300 cursor-pointer">
+              </button>
+              <button 
+                onClick={handlePhoneContact}
+                className="w-10 h-10 bg-vertex-gold/20 rounded-lg flex items-center justify-center hover:bg-vertex-gold hover:text-vertex-black transition-all duration-300 cursor-pointer"
+              >
                 <Phone className="w-5 h-5" />
-              </div>
+              </button>
             </div>
           </div>
 
@@ -58,9 +102,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
-                  <a href="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
-                    {service}
-                  </a>
+                  <Link 
+                    to={service.href} 
+                    className="text-gray-300 hover:text-vertex-gold transition-colors duration-300"
+                  >
+                    {service.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -72,9 +119,21 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a href="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
-                    {link}
-                  </a>
+                  {link.href.startsWith('/#') ? (
+                    <button 
+                      onClick={() => handleQuickLinkClick(link.href)}
+                      className="text-gray-300 hover:text-vertex-gold transition-colors duration-300"
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <Link 
+                      to={link.href} 
+                      className="text-gray-300 hover:text-vertex-gold transition-colors duration-300"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -90,24 +149,35 @@ const Footer = () => {
                   الرياض، المملكة العربية السعودية
                 </div>
               </div>
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              <button 
+                onClick={handlePhoneContact}
+                className="flex items-center space-x-3 rtl:space-x-reverse hover:text-vertex-gold transition-colors"
+              >
                 <Phone className="w-5 h-5 text-vertex-gold flex-shrink-0" />
                 <div className="text-gray-300" dir="ltr">
                   +966 50 123 4567
                 </div>
-              </div>
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              </button>
+              <button 
+                onClick={handleEmailContact}
+                className="flex items-center space-x-3 rtl:space-x-reverse hover:text-vertex-gold transition-colors"
+              >
                 <Mail className="w-5 h-5 text-vertex-gold flex-shrink-0" />
                 <div className="text-gray-300">
                   info@vertex-solutions.com
                 </div>
-              </div>
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <MessageCircle className="w-5 h-5 text-vertex-gold flex-shrink-0" />
-                <div className="text-gray-300">
-                  دعم على مدار الساعة
-                </div>
-              </div>
+              </button>
+              <ContactModal 
+                trigger={
+                  <button className="flex items-center space-x-3 rtl:space-x-reverse hover:text-vertex-gold transition-colors">
+                    <MessageCircle className="w-5 h-5 text-vertex-gold flex-shrink-0" />
+                    <div className="text-gray-300">
+                      دعم على مدار الساعة
+                    </div>
+                  </button>
+                }
+                title="طلب دعم فني"
+              />
             </div>
           </div>
         </div>
@@ -119,15 +189,15 @@ const Footer = () => {
               © 2024 Vertex Solutions. جميع الحقوق محفوظة.
             </div>
             <div className="flex space-x-6 rtl:space-x-reverse">
-              <a href="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
+              <Link to="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
                 سياسة الخصوصية
-              </a>
-              <a href="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
+              </Link>
+              <Link to="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
                 شروط الاستخدام
-              </a>
-              <a href="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
+              </Link>
+              <Link to="#" className="text-gray-300 hover:text-vertex-gold transition-colors duration-300">
                 سياسة الاسترداد
-              </a>
+              </Link>
             </div>
           </div>
         </div>

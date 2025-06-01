@@ -1,8 +1,22 @@
 
 import { ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ContactModal from './ContactModal';
 
 const HeroSection = () => {
+  const handleConsultation = () => {
+    const message = "مرحبا، أريد حجز استشارة مجانية مع Vertex Solutions";
+    const whatsappUrl = `https://wa.me/966501234567?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const scrollToServices = () => {
+    const element = document.getElementById('services');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen bg-vertex-hero relative overflow-hidden flex items-center">
       {/* Background Effects */}
@@ -35,10 +49,16 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-8">
-              <Button className="vertex-button text-lg px-8 py-4 animate-glow">
-                🟢 ابدأ الآن
-              </Button>
+              <ContactModal 
+                trigger={
+                  <Button className="vertex-button text-lg px-8 py-4 animate-glow">
+                    🟢 ابدأ الآن
+                  </Button>
+                }
+                title="ابدأ مشروعك الرقمي الآن"
+              />
               <Button 
+                onClick={handleConsultation}
                 variant="outline" 
                 className="text-white border-vertex-gold hover:bg-vertex-gold hover:text-vertex-black text-lg px-8 py-4 transition-all duration-300"
               >
@@ -70,9 +90,12 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <button 
+        onClick={scrollToServices}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:text-vertex-gold transition-colors"
+      >
         <ArrowDown className="text-vertex-gold w-6 h-6" />
-      </div>
+      </button>
     </section>
   );
 };
